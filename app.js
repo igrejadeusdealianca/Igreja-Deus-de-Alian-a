@@ -1705,6 +1705,24 @@ function aniversariantes(){
 
 }
 
+import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
+
+const messaging = getMessaging();
+
+Notification.requestPermission().then((permission) => {
+  if (permission === "granted") {
+
+    getToken(messaging, {
+      vapidKey: "SUA_CHAVE_VAPID_AQUI"
+    }).then((token) => {
+
+      console.log("TOKEN DO USUÁRIO:", token);
+
+      // IMPORTANTE: salvar esse token no Firestore
+    });
+  }
+});
+
 // ================= LOGOUT =================
 function logout(){
 location.reload();
