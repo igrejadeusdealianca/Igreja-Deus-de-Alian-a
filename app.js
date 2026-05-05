@@ -22,25 +22,6 @@ console.error("Erro ao salvar:", e);
 }
 
 }
-import { getAuth, setPersistence, browserLocalPersistence, signInWithEmailAndPassword } 
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const auth = getAuth();
-
-// ATIVA LOGIN SALVO
-setPersistence(auth, browserLocalPersistence)
-  .then(() => {
-
-    // DEPOIS FAZ O LOGIN NORMAL
-    return signInWithEmailAndPassword(auth, email, senha);
-
-  })
-  .then((userCredential) => {
-    console.log("Logado e salvo!");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
 
 // ================= LOGIN =================
 function login(){
@@ -1723,24 +1704,6 @@ function aniversariantes(){
   });
 
 }
-
-import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
-
-const messaging = getMessaging();
-
-Notification.requestPermission().then((permission) => {
-  if (permission === "granted") {
-
-    getToken(messaging, {
-      vapidKey: "SUA_CHAVE_VAPID_AQUI"
-    }).then((token) => {
-
-      console.log("TOKEN DO USUÁRIO:", token);
-
-      // IMPORTANTE: salvar esse token no Firestore
-    });
-  }
-});
 
 // ================= LOGOUT =================
 function logout(){
