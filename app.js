@@ -22,6 +22,25 @@ console.error("Erro ao salvar:", e);
 }
 
 }
+import { getAuth, setPersistence, browserLocalPersistence, signInWithEmailAndPassword } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const auth = getAuth();
+
+// ATIVA LOGIN SALVO
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+
+    // DEPOIS FAZ O LOGIN NORMAL
+    return signInWithEmailAndPassword(auth, email, senha);
+
+  })
+  .then((userCredential) => {
+    console.log("Logado e salvo!");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 // ================= LOGIN =================
 function login(){
