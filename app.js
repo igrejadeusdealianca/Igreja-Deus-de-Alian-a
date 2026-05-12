@@ -689,6 +689,26 @@ box.innerHTML = `
 <p><strong>Banco:</strong> ${p.banco}</p>
 <p><strong>PIX:</strong> ${p.chave}</p>
 
+<button onclick="copiarPix('${p.chave}')"
+style="
+margin-top:10px;
+padding:10px 15px;
+background:#4CAF50;
+color:#fff;
+border:none;
+border-radius:8px;
+cursor:pointer;
+">
+📋 Copiar Chave PIX
+</button>
+
+<img src="qrcode.png"
+style="
+width:220px;
+margin-top:15px;
+border-radius:12px;
+">
+
 ${isAdmin() ? `
 <button onclick="editarPix()"
 style="margin-top:10px;padding:8px 12px;background:orange;color:#fff;border:none;border-radius:8px;cursor:pointer;">
@@ -724,6 +744,15 @@ function editarPix(){
   el("pixChave").value = p.chave;
 
   el("adminForm").style.display = "block";
+}
+
+// ================= COPIAR PIX =================
+function copiarPix(chave){
+
+navigator.clipboard.writeText(chave);
+
+alert("Chave PIX copiada ✅");
+
 }
 
 // ================= EXCLUIR PIX =================
